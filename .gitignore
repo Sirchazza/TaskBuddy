@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# PyInstaller
+build/
+dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+*.exe
+temp_requirements.txt
+
+# Personal folders - not for version control
+.backup/
+.Setup/
+
+# Keep uv.lock for reproducible builds
+# uv.lock should be committed

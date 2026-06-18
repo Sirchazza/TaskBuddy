@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Introduction</title>
+            <style>
+/* From extension vscode.github */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.vscode-dark img[src$=\#gh-light-mode-only],
+.vscode-light img[src$=\#gh-dark-mode-only],
+.vscode-high-contrast:not(.vscode-high-contrast-light) img[src$=\#gh-light-mode-only],
+.vscode-high-contrast-light img[src$=\#gh-dark-mode-only] {
+	display: none;
+}
+
+</style>
+            
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/markdown.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Microsoft/vscode/extensions/markdown-language-features/media/highlight.css">
+<style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
+                font-size: 14px;
+                line-height: 1.6;
+            }
+        </style>
+        <style>
+.task-list-item {
+    list-style-type: none;
+}
+
+.task-list-item-checkbox {
+    margin-left: -20px;
+    vertical-align: middle;
+    pointer-events: none;
+}
+</style>
+<style>
+:root {
+  --color-note: #0969da;
+  --color-tip: #1a7f37;
+  --color-warning: #9a6700;
+  --color-severe: #bc4c00;
+  --color-caution: #d1242f;
+  --color-important: #8250df;
+}
+
+</style>
+<style>
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-note: #2f81f7;
+    --color-tip: #3fb950;
+    --color-warning: #d29922;
+    --color-severe: #db6d28;
+    --color-caution: #f85149;
+    --color-important: #a371f7;
+  }
+}
+
+</style>
+<style>
+.markdown-alert {
+  padding: 0.5rem 1rem;
+  margin-bottom: 16px;
+  color: inherit;
+  border-left: .25em solid #888;
+}
+
+.markdown-alert>:first-child {
+  margin-top: 0
+}
+
+.markdown-alert>:last-child {
+  margin-bottom: 0
+}
+
+.markdown-alert .markdown-alert-title {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  line-height: 1
+}
+
+.markdown-alert .markdown-alert-title .octicon {
+  margin-right: 0.5rem;
+  display: inline-block;
+  overflow: visible !important;
+  vertical-align: text-bottom;
+  fill: currentColor;
+}
+
+.markdown-alert.markdown-alert-note {
+  border-left-color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-note .markdown-alert-title {
+  color: var(--color-note);
+}
+
+.markdown-alert.markdown-alert-important {
+  border-left-color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-important .markdown-alert-title {
+  color: var(--color-important);
+}
+
+.markdown-alert.markdown-alert-warning {
+  border-left-color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-warning .markdown-alert-title {
+  color: var(--color-warning);
+}
+
+.markdown-alert.markdown-alert-tip {
+  border-left-color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-tip .markdown-alert-title {
+  color: var(--color-tip);
+}
+
+.markdown-alert.markdown-alert-caution {
+  border-left-color: var(--color-caution);
+}
+
+.markdown-alert.markdown-alert-caution .markdown-alert-title {
+  color: var(--color-caution);
+}
+
+</style>
+        
+        </head>
+        <body class="vscode-body vscode-light">
+            <h1 id="top">Task Buddy - User Guide</h1>
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#-insert-datetime">📅 Insert Date/Time</a>
+<ul>
+<li><a href="#iso-format">ISO Format</a></li>
+<li><a href="#uk-format">UK Format</a></li>
+<li><a href="#usa-format">USA Format</a></li>
+<li><a href="#how-to-use-insert-datetime-functions">How to Use Insert Date/Time Functions</a></li>
+</ul>
+</li>
+<li><a href="#-change-case">🔤 Change Case</a>
+<ul>
+<li><a href="#uppercase">Uppercase</a></li>
+<li><a href="#lowercase">Lowercase</a></li>
+<li><a href="#title-case">Title Case</a></li>
+<li><a href="#sentence-case">Sentence Case</a></li>
+<li><a href="#how-to-use-change-case-functions">How to Use Change Case Functions</a></li>
+</ul>
+</li>
+<li><a href="#-text-replacements">🔄 Text Replacements</a>
+<ul>
+<li><a href="#quick-replacements">Quick Replacements</a>
+<ul>
+<li><a href="#how-to-use-quick-replacements">How to Use Quick Replacements:</a></li>
+</ul>
+</li>
+<li><a href="#custom-replacements">Custom Replacements</a>
+<ul>
+<li><a href="#how-to-use-custom-replacements">How to Use Custom Replacements:</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#-line-operations">📝 Line Operations</a>
+<ul>
+<li><a href="#remove-line-breaks">Remove Line Breaks</a></li>
+<li><a href="#add-line-numbers">Add Line Numbers</a></li>
+<li><a href="#sort-lines-a-z">Sort Lines A-Z</a></li>
+<li><a href="#how-to-use-line-operation-functions">How to Use Line Operation Functions</a></li>
+</ul>
+</li>
+<li><a href="#-sql-functions">🛢 SQL Functions</a>
+<ul>
+<li><a href="#wrap-text-with-lr-trim">Wrap Text With L/R Trim</a></li>
+<li><a href="#wrap-text-with-trim">Wrap Text With Trim</a></li>
+<li><a href="#move-commas-to-front-all">Move Commas To Front (All)</a></li>
+<li><a href="#move-commas-to-front-exc-1st">Move Commas To Front (exc. 1st)</a></li>
+<li><a href="#excel-columns-to-sql">Excel Columns to SQL</a></li>
+<li><a href="#remove-square-brackets">Remove Square Brackets</a></li>
+<li><a href="#how-to-use-sql-functions">How to Use SQL Functions</a></li>
+</ul>
+</li>
+<li><a href="#-browser-functions">🌐 Browser Functions</a>
+<ul>
+<li><a href="#google-search">Google Search</a></li>
+<li><a href="#go-to-website">Go To Website</a></li>
+<li><a href="#search-service-now-ticket">Search Service Now Ticket</a></li>
+<li><a href="#how-to-use-browser-functions">How to Use Browser Functions</a></li>
+</ul>
+</li>
+<li><a href="#-snippets">📝 Snippets</a>
+<ul>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#using-snippets">Using Snippets</a></li>
+<li><a href="#creating-custom-snippets">Creating Custom Snippets</a>
+<ul>
+<li><a href="#simple-snippet-formatting">Simple Snippet Formatting</a></li>
+<li><a href="#snippet-with-parameters-formatting">Snippet with Parameters Formatting</a></li>
+<li><a href="#parameter-naming">Parameter Naming</a></li>
+</ul>
+</li>
+<li><a href="#tips-for-effective-snippets">Tips for Effective Snippets</a></li>
+<li><a href="#reloading-snippets">Reloading Snippets</a></li>
+</ul>
+</li>
+<li><a href="#troubleshooting">Troubleshooting</a>
+<ul>
+<li><a href="#silly-billy-warning-messages">&quot;Silly Billy!&quot; Warning Messages</a></li>
+<li><a href="#menu-doesnt-appear">Menu Doesn't Appear:</a></li>
+<li><a href="#file-operations-dont-work">File Operations Don't Work</a></li>
+<li><a href="#browser-functions-open-wrong-browser">Browser Functions Open Wrong Browser</a></li>
+<li><a href="#getting-help">Getting Help</a></li>
+</ul>
+</li>
+<li><a href="#tips-and-best-practices">Tips and Best Practices</a></li>
+</ul>
+<h2 id="introduction">Introduction</h2>
+<p>Text Tools is a Windows utility application that provides quick access to text manipulation, file operations, and productivity functions through a convenient hotkey-activated menu. The application runs in the system tray and can be accessed at any time with a simple keyboard shortcut.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="getting-started">Getting Started</h2>
+<ol>
+<li>Launch the Application: Run Task Buddy.exe</li>
+<li>Locate the Tray Icon: Look for the Text Tools icon in your system tray (bottom-right corner of Windows taskbar)</li>
+<li>Access the Menu: Press Alt+Shift+. (using the decimal point on the numpad) to open the menu at your cursor position</li>
+<li>Pause/Resume: Right-click the tray icon to pause or resume the hotkey listener if needed</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-insert-datetime">📅 Insert Date/Time</h2>
+<p>Insert the current date and/or time in various standardized formats.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="iso-format">ISO Format</h3>
+<p>ISO Format uses the international standard with year first: 2026-06-02 14:30 (YYYY-MM-DD HH:MM)</p>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Current Date &amp; Time</strong></th>
+<th style="text-align:center"><strong>Date Only</strong></th>
+<th style="text-align:center"><strong>Time Only</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">2026-06-02 14:30</td>
+<td style="text-align:center">2026-06-02</td>
+<td style="text-align:center">14:30</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="uk-format">UK Format</h3>
+<p>UK Format uses a date format with the day first: 02-06-2026 14:30  (DD-MM-YYYY HH:MM)</p>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Current Date &amp; Time</strong></th>
+<th style="text-align:center"><strong>Date Only</strong></th>
+<th style="text-align:center"><strong>Time Only</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">02-06-2026 14:30</td>
+<td style="text-align:center">02-06-2026</td>
+<td style="text-align:center">14:30</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="usa-format">USA Format</h3>
+<p>USA Format uses a date format with the month first: 06-02-2026 14:30  (MM-DD-YYYY HH:MM)</p>
+<p>Example:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>Current Date &amp; Time</strong></th>
+<th style="text-align:center"><strong>Date Only</strong></th>
+<th style="text-align:center"><strong>Time Only</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">06-02-2026 14:30</td>
+<td style="text-align:center">06-02-2026</td>
+<td style="text-align:center">14:30</td>
+</tr>
+</tbody>
+</table>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="how-to-use-insert-datetime-functions">How to Use Insert Date/Time Functions</h3>
+<ol>
+<li>Position your cursor where you want the date/time inserted</li>
+<li>Open the Text Tools menu (Alt+Shift+.)</li>
+<li>Navigate to 📅 Insert Date/Time</li>
+<li>Select your preferred format and option</li>
+<li>The date/time will be automatically inserted at your cursor position</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-change-case">🔤 Change Case</h2>
+<p>Convert selected text between different case formats.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="uppercase">Uppercase</h3>
+<p>Converts all characters to uppercase</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	hello world
+
+Result:  
+	HELLO WORLD
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="lowercase">Lowercase</h3>
+<p>Converts all characters to lowercase</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	HELLO WORLD
+
+Result:  
+	hello world
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="title-case">Title Case</h3>
+<p>Capitalizes The First Letter Of Each Word</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	HELLO WORLD
+
+Result:  
+	Hello World
+</code></pre>
+<h3 id="sentence-case">Sentence Case</h3>
+<p>Capitalizes only the first letter</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	HELLO WORLD
+
+Result:  
+	Hello world
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="how-to-use-change-case-functions">How to Use Change Case Functions</h3>
+<ol>
+<li>Highlight/select the text you want to convert</li>
+<li>Open Text Tools menu (Alt+Shift+.)</li>
+<li>Navigate to 🔤 Change Case</li>
+<li>Select your desired case format</li>
+<li>The selected text will be replaced with the converted version</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-text-replacements">🔄 Text Replacements</h2>
+<p>Replace specific characters or patterns in selected text using either:</p>
+<ul>
+<li>One of multiple pre-defined replacement options</li>
+<li>Entering the text being replaced and what it is being replaced by</li>
+</ul>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="quick-replacements">Quick Replacements</h3>
+<p>Replaces characters in the highlighted text using pre-defined rules:</p>
+<ul>
+<li>
+<p>Spaces to Underscores: Hello World → Hello_World</p>
+</li>
+<li>
+<p>Spaces to Hyphens: Hello World → Hello-World</p>
+</li>
+<li>
+<p>Hyphens to Spaces: Hello-World → Hello World</p>
+</li>
+<li>
+<p>Hyphens to Underscores: Hello-World → Hello_World</p>
+</li>
+<li>
+<p>Underscores to Hyphens: Hello_World → Hello-World</p>
+</li>
+<li>
+<p>Underscores to Spaces: Hello_World → Hello World</p>
+</li>
+</ul>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h4 id="how-to-use-quick-replacements">How to Use Quick Replacements:</h4>
+<ol>
+<li>Highlight the text containing the substring you want to replace</li>
+<li>Open Text Tools menu</li>
+<li>Select your desired replacement option</li>
+<li>The text will be updated automatically</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="custom-replacements">Custom Replacements</h3>
+<p>The Custom String replacement option allows you to replace any text with text.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h4 id="how-to-use-custom-replacements">How to Use Custom Replacements:</h4>
+<ol>
+<li>Highlight the text containing the substring you want to replace</li>
+<li>Open Text Tools menu</li>
+<li>Select 🔄 Text Replacements → Custom String</li>
+<li>Enter the text to replace in the first dialog box</li>
+<li>Enter the replacement text in the second dialog box</li>
+<li>The text will be updated automatically</li>
+</ol>
+<p>Example:</p>
+<pre><code>Original text:
+	&quot;We will say hello when we get there&quot;
+Replace text:
+	&quot;We&quot;
+Replace with:
+	&quot;I&quot;
+Result:
+	&quot;I will say hello when I get there&quot;
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-line-operations">📝 Line Operations</h2>
+<p>Manipulate text on a line-by-line basis.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="remove-line-breaks">Remove Line Breaks</h3>
+<p>Combines all highlighted lines into a single line, removing any spaces at the beginning and end of the combined sentence</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	First Line,  
+	Second Line
+
+Result:  
+	First Line, Second Line
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="add-line-numbers">Add Line Numbers</h3>
+<p>Adds numbering and removes leading and trailing spaces to each line in the highlighted text</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	First line,  
+	Second line
+
+Result:  
+	1. First line,  
+	2. Second line
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="sort-lines-a-z">Sort Lines A-Z</h3>
+<p>Alphabetically sorts all lines in the highlighted text.<br>
+Works with both text and numbers.</p>
+<p>Example:</p>
+<pre><code>Original Text:  
+	A banana
+	5 apples  
+	2 pears
+	3 peaches
+	4 melons
+
+Result:  
+	2 pears
+	3 peaches
+	4 melons
+	5 apples  
+	A banana
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="how-to-use-line-operation-functions">How to Use Line Operation Functions</h3>
+<ol>
+<li>Select the multi-line text you want to manipulate</li>
+<li>Open Text Tools menu</li>
+<li>Navigate to 📝 Line Operations</li>
+<li>Choose your desired operation</li>
+<li>The modified text replaces the original selection</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-sql-functions">🛢 SQL Functions</h2>
+<p>Utilities for working with SQL code and queries.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="wrap-text-with-lr-trim">Wrap Text With L/R Trim</h3>
+<p>Wraps the highlighted text with LTRIM(RTRIM(...))<br>
+Used for Legacy SQL Server databases to strip whitespace from the beginning and end of text</p>
+<p>Example:</p>
+<pre><code>Text:
+	sName
+
+Result:
+	LTRIM(RTRIM(sName))
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="wrap-text-with-trim">Wrap Text With Trim</h3>
+<p>Wraps selected text with TRIM(...)<br>
+Used for modern SQL Server databases to strip whitespace from the beginning and end of text (SQL Server 2017+)</p>
+<p>Example:</p>
+<pre><code>Text:
+	sName
+
+Result:
+	TRIM(sName)
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="move-commas-to-front-all">Move Commas To Front (All)</h3>
+<p>Moves trailing commas to the beginning of each line<br>
+Applies to all lines including the first</p>
+<p>Example:</p>
+<pre><code>Selected Text:
+	sName,
+	sDesc,
+	sDate,
+	iType
+
+Result:
+	,sName
+	,sDesc
+	,sDate
+	,iType
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="move-commas-to-front-exc-1st">Move Commas To Front (exc. 1st)</h3>
+<p>Moves trailing commas to the beginning of each line<br>
+Excludes the first line (useful for SELECT statements)</p>
+<p>Example:</p>
+<pre><code>Selected Text:
+	sName,
+	sDesc,
+	sDate,
+	iType
+
+Result:
+	sName
+	,sDesc
+	,sDate
+	,iType
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="excel-columns-to-sql">Excel Columns to SQL</h3>
+<p>Converts tab-separated Excel columns to SQL-formatted column list<br>
+Adds proper indentation and commas</p>
+<p>Example:</p>
+<pre><code>Selected Text (Copied from Excel):
+	Property_Code	Tenant_Code	Unit_Code	Status	First_Name	Last_Name
+	
+
+Result:
+	Property_Code
+	, Tenant_Code
+	, Unit_Code
+	, Status
+	, First_Name
+	, Last_Name
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="remove-square-brackets">Remove Square Brackets</h3>
+<p>Strips [ and ] characters from the selected text<br>
+Useful for cleaning copied SQL Server object names</p>
+<p>Example:</p>
+<pre><code>Selected Text:
+	[sName],
+	[sDesc],
+	[sDate],
+	[iType]
+
+Result:
+	sName,
+	sDesc,
+	sDate,
+	iType
+</code></pre>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="how-to-use-sql-functions">How to Use SQL Functions</h3>
+<ol>
+<li>Select the SQL code or text you want to modify</li>
+<li>Open Text Tools menu</li>
+<li>Navigate to 🛢 SQL Functions</li>
+<li>Select your desired operation</li>
+<li>The modified code replaces the original selection</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-browser-functions">🌐 Browser Functions</h2>
+<p>Open web-based resources directly from selected text</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="google-search">Google Search</h3>
+<p>Performs a Google search for selected text in a new Chrome tab</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="go-to-website">Go To Website</h3>
+<p>Opens URLs in a new Chrome tab</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="search-service-now-ticket">Search Service Now Ticket</h3>
+<p>Searches JLL's ServiceNow instance for highlighted ticket numbers</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="how-to-use-browser-functions">How to Use Browser Functions</h3>
+<ol>
+<li>Highlight the text, URL, or ticket number</li>
+<li>Open Text Tools menu</li>
+<li>Navigate to 🌐 Browser Functions</li>
+<li>Select your desired action</li>
+<li>A new Chrome tab will open with the results</li>
+</ol>
+<p style="color:red;">Requirement: Google Chrome must be installed at the default location</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="-snippets">📝 Snippets</h2>
+<p>Insert customizable text snippets with optional parameters.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="overview">Overview</h3>
+<p>Snippets allow you to create reusable text templates that can be quickly inserted.<br>
+They support both static text and dynamic parameters that prompt for input when used.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="using-snippets">Using Snippets</h3>
+<ol>
+<li>Open Text Tools menu</li>
+<li>Navigate to 📝 Snippets</li>
+<li>Browse through categories (e.g., SQL, Excel, Python)</li>
+<li>Select your desired snippet</li>
+<li>If the snippet has parameters, popup boxes will prompt for input</li>
+<li>The completed snippet will be inserted at your cursor position</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="creating-custom-snippets">Creating Custom Snippets</h3>
+<p>Snippets are stored in the snippets.toml file located in the same directory as the application.<br>
+If a snippets.toml file is not found, one will be created with with some sample snippets.<br>
+The app will need to be closed and reopened for the new snippets to be added to the menu.</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h4 id="simple-snippet-formatting">Simple Snippet Formatting</h4>
+<p>For a snippet with no blanks that need to be filled, the below format is used:</p>
+<pre><code>[&quot;Category/Snippet Name&quot;]
+text = &quot;Your snippet content here&quot;
+
+Example:
+	[&quot;Email/Signature&quot;]
+	text = &quot;&quot;&quot;Best regards,
+	John Smith
+	Senior Analyst
+	john.smith@company.com&quot;&quot;&quot;
+</code></pre>
+<p>Below is a preview of how this would appear in the menu:</p>
+<p><img src="file:///c:\Users\Charlie.Jackson\Documents\Coding\Python\Task Buddy\icons\simple_snippet.png" alt=""></p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h4 id="snippet-with-parameters-formatting">Snippet with Parameters Formatting</h4>
+<p>You can also add a snippet that has blanks, allowing you to fill them in when generating it.<br>
+Below is the format for a sinppet with blanks (parameters):</p>
+<pre><code>[&quot;Category/Snippet Name&quot;]
+text = &quot;&quot;&quot;Your snippet with {parameter1} and {parameter2}&quot;&quot;&quot;
+params = [&quot;parameter1&quot;, &quot;parameter2&quot;]
+
+Example:  
+	[&quot;SQL/Custom Query&quot;]
+	text = &quot;&quot;&quot;SELECT
+		{columns}
+	FROM
+		{table_name}
+	WHERE
+		{condition}
+	ORDER BY
+		{order_column};&quot;&quot;&quot;
+	params = [&quot;columns&quot;, &quot;table_name&quot;, &quot;condition&quot;, &quot;order_column&quot;]
+</code></pre>
+<p>When used, this snippet will prompt you four times:</p>
+<ol>
+<li>&quot;Enter Columns:&quot;</li>
+<li>&quot;Enter Table Name:&quot;</li>
+<li>&quot;Enter Condition:&quot;</li>
+<li>&quot;Enter Order Column:&quot;</li>
+</ol>
+<p>Below is an example of a prompt that will open:</p>
+<p><img src="file:///c:\Users\Charlie.Jackson\Documents\Coding\Python\Task Buddy\icons\snippet_with_parameters.png" alt=""></p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h4 id="parameter-naming">Parameter Naming</h4>
+<p>Use snake_case for parameter names (e.g., table_name, order_by)<br>
+The app automatically converts snake_case to &quot;Title Case&quot; in the prompts
+from_table becomes &quot;Enter From Table:&quot;
+order_by becomes &quot;Enter Order By:&quot;</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="tips-for-effective-snippets">Tips for Effective Snippets</h3>
+<ol>
+<li>Use descriptive names: Make snippet names clear and searchable</li>
+<li>Add comments: Use TOML comments (#) to document complex snippets</li>
+<li>Test parameters: Ensure parameter names make sense when converted to prompts</li>
+<li>Special characters: Escape special characters if needed (e.g., \ for backslash)</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="reloading-snippets">Reloading Snippets</h3>
+<p>After editing snippets.toml:</p>
+<ul>
+<li>Close and restart the Text Tools application. Your new snippets will appear in the menu</li>
+<li>If the snippets.toml file is missing or corrupted, the application will automatically create a sample file with example snippets.</li>
+</ul>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="silly-billy-warning-messages">&quot;Silly Billy!&quot; Warning Messages</h3>
+<p>These appear when you haven't selected/highlighted text before using a text manipulation function
+Solution: Highlight the text you want to modify before opening the menu</p>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="menu-doesnt-appear">Menu Doesn't Appear:</h3>
+<ol>
+<li>Ensure the hotkey Alt+Shift+. (numpad decimal) is being pressed correctly</li>
+<li>Check if the hotkey is paused (right-click tray icon to check status)</li>
+<li>Verify the application is running (look for tray icon)</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="file-operations-dont-work">File Operations Don't Work</h3>
+<ol>
+<li>Ensure you've selected the correct file type in File Explorer</li>
+<li>For MS Project conversion: Verify Java Runtime Environment is installed</li>
+<li>For image conversion: Check the source file isn't corrupted</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="browser-functions-open-wrong-browser">Browser Functions Open Wrong Browser</h3>
+<ol>
+<li>Browser functions are hardcoded to use Google Chrome</li>
+<li>Ensure Chrome is installed at: C:\Program Files\Google\Chrome\Application\chrome.exe</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h3 id="getting-help">Getting Help</h3>
+<p>If you encounter issues not covered here:</p>
+<ol>
+<li>Check that all file paths are accessible</li>
+<li>Verify required software (Word, Chrome, Java) is installed</li>
+<li>Restart the application</li>
+<li>Check for any error messages in the console (if running from source)</li>
+</ol>
+
+<p><a href="#top">⬆ Back to Top</a></p>
+
+<hr>
+
+<h2 id="tips-and-best-practices">Tips and Best Practices</h2>
+<ol>
+<li>Learn the Categories: Familiarize yourself with the menu structure to quickly find functions</li>
+<li>Create Snippets: Build a personal library of frequently used text patterns</li>
+<li>Use Hotkey Efficiently: Keep one hand near the numpad for quick access</li>
+<li>Test Operations: Try text operations on sample data before using on important content</li>
+<li>Organize Snippets: Use clear category names in your snippets.toml file</li>
+</ol>
+
+            
+            
+        </body>
+        </html>

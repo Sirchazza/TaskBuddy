@@ -1,0 +1,126 @@
+["SQL/Unique Values"]
+
+text = """WITH LatestRow AS (
+    SELECT
+	    *
+        , ROW_NUMBER() OVER (PARTITION BY {Column_Name} ORDER BY {Order_By} DESC) AS rn
+	FROM
+		{From_Table})
+SELECT
+	*
+FROM
+    LatestRow
+WHERE
+	rn = 1
+ORDER BY
+    {Order_By};"""
+
+params = ["Column_Name", "From_Table", "Order_By"]
+
+
+["SQL/Track Table"]
+
+text = """SELECT TOP 250
+    *
+FROM
+    TRACK
+WHERE
+    sTableName NOT IN ('Dictionary', 'Email_Que')
+AND
+    SUSERNAME = 'charlie.jackson@jll.com'
+ORDER BY
+    dDateIn DESC"""
+
+
+["SQL/Live Table"]
+
+text = "[XTCIIORPYMLLC_LIVEUK].[XTCIIORPYMLLC_LIVEUK].[dbo].[{From_Table}]"
+
+params = ["From_Table"]
+
+
+["SQL/Delimit Carat (^)"]
+
+text = """DECLARE @Result VARCHAR(MAX)
+SELECT
+    @Result = STRING_AGG({Column_Name}, '^')
+FROM
+    {From_Table}
+WHERE 
+    {Where_Clause}
+
+SELECT @Result AS FormattedResult;"""
+
+params = ["Column_Name", "From_Table", "Where_Clause"]
+
+
+["SQL/Delimit Carat (,)"]
+
+text = """DECLARE @Result VARCHAR(MAX)
+
+SELECT
+    @Result = '(' + STRING_AGG({Column_Name}, ', ') + ')'
+FROM
+    {From_Table}
+WHERE 
+    {Where_Clause}
+
+SELECT @Result AS FormattedResult;"""
+
+params = ["Column_Name", "From_Table","Where_Clause"]
+
+
+["SQL/Select Statement"]
+
+text = """SELECT TOP 50
+    *
+FROM
+    {From_Table}
+WHERE
+    {Where_Clause}
+ORDER BY
+    {Order_By}"""
+
+params = ["From_Table","Where_Clause", "Order_By"]
+
+
+["SQL/Column Names"]
+
+text = """SELECT
+    c.name AS COLUMN_NAME
+FROM
+    sys.columns c
+INNER JOIN sys.tables t ON c.object_id = t.object_id
+WHERE
+    t.name = {From_Table}
+ORDER BY
+    c.column_id;"""
+
+params = ["From_Table"]
+
+    
+["SQL/Convert Datetime"]
+
+text = """CONVERT(DATETIME, {Column_Name}, 103)"""
+
+params = ["Column_Name"]
+
+    
+["Excel/Textjoin Numerical"]
+
+text = '="("&TEXTJOIN(", ",  TRUE, *DATA*)&")'
+
+
+["Excel/Textjoin String"]
+
+text = '''="('"&TEXTJOIN("', '", TRUE, *DATA*)&"')"'''
+
+
+["Python/Create Venv"]
+
+text = "python -m venv .venv"
+
+
+["Python/Activate Venv"]
+
+text = '.venv\Scripts\activate'

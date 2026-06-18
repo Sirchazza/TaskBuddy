@@ -1,0 +1,126 @@
+["SQL/Unique Values"]
+
+text = """WITH LatestRow AS (
+    SELECT
+	    *
+        , ROW_NUMBER() OVER (PARTITION BY {column} ORDER BY {order_by} DESC) AS rn
+	FROM
+		{table})
+SELECT
+	*
+FROM
+    LatestRow
+WHERE
+	rn = 1
+ORDER BY
+    {order_by};"""
+
+params = ["column", "order_by", "table"]
+
+
+["SQL/Track Table"]
+
+text = """SELECT TOP 250
+    *
+FROM
+    TRACK
+WHERE
+    sTableName NOT IN ('Dictionary', 'Email_Que')
+AND
+    SUSERNAME = 'charlie.jackson@jll.com'
+ORDER BY
+    dDateIn DESC"""
+
+
+["SQL/Live Table"]
+
+text = "[XTCIIORPYMLLC_LIVEUK].[XTCIIORPYMLLC_LIVEUK].[dbo].[{table}]"
+
+params = ["table"]
+
+
+["SQL/Delimit Carat (^)"]
+
+text = """DECLARE @Result VARCHAR(MAX)
+SELECT
+    @Result = STRING_AGG({column}, '^')
+FROM
+    {table}
+WHERE 
+    {where_clause}
+
+SELECT @Result AS FormattedResult;"""
+
+params = ["column", "table", "where_clause"]
+
+
+["SQL/Delimit Carat (,)"]
+
+text = """DECLARE @Result VARCHAR(MAX)
+
+SELECT
+    @Result = '(' + STRING_AGG({column}, ', ') + ')'
+FROM
+    {table}
+WHERE 
+    {where_clause}
+
+SELECT @Result AS FormattedResult;"""
+
+params = ["column", "table","where_clause"]
+
+
+["SQL/Select Statement"]
+
+text = """SELECT TOP 50
+    *
+FROM
+    {table}
+WHERE
+    {where_clause}
+ORDER BY
+    {order_by}"""
+
+params = ["column", "table","where_clause"]
+
+
+["SQL/Column Names"]
+
+text = """SELECT
+    c.name AS COLUMN_NAME
+FROM
+    sys.columns c
+INNER JOIN sys.tables t ON c.object_id = t.object_id
+WHERE
+    t.name = {table}
+ORDER BY
+    c.column_id;"""
+
+params = ["table"]
+
+    
+["SQL/Convert Datetime"]
+
+text = """CONVERT(DATETIME, {column}, 103)"""
+
+params = ["column"]
+
+    
+["Excel/Textjoin Numerical"]
+
+text = '="("&TEXTJOIN(", ",  TRUE, *DATA*)&")'
+
+
+["Excel/Textjoin String"]
+
+text = '''="('"&TEXTJOIN("', '", TRUE, *DATA*)&"')"'''
+
+
+["Python/Create Venv"]
+
+text = "python -m venv .venv"
+
+
+["Python/Activate Venv"]
+
+text = '.venv\Scripts\activate'
