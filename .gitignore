@@ -34,3 +34,4 @@ temp_requirements.txt
 
 # Keep uv.lock for reproducible builds
 # uv.lock should be committed
+build_v2.bat
